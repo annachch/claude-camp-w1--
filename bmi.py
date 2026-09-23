@@ -1,4 +1,4 @@
-BMI 计算器：输入身高体重，输出 BMI 数值与健康建议。
+#BMI 计算器:输入身高体重，输出 BMI 数值与健康建议。
 
 import sys
 
@@ -16,8 +16,8 @@ BANDS = [
         "同时留意腰围、血压、血脂和血糖——BMI 正常不等于代谢指标正常。",
     ]),
     (28.0, "超重", [
-        "目标定在减去当前体重的 5%-10%，这个幅度已足以改善血压、血糖和血脂。",
-        "每日减少约 300-500 kcal，优先砍掉含糖饮料、精制碳水和油炸食品。",
+        "目标定在减去当前体重的 5% 幅度已足以改善血压、血糖和血脂。",
+        "每日减少约 300-500 kcal,优先砍掉含糖饮料、精制碳水和油炸食品。",
         "把活动嵌进日常：通勤步行、爬楼、久坐每小时起身。",
     ]),
     (float("inf"), "肥胖", [
@@ -49,7 +49,7 @@ def ask(prompt, low, high):
             sys.exit("\n已取消。")
         if low <= value <= high:
             return value
-        print("  超出合理范围（%g-%g），请重新输入。" % (low, high))
+        print("  超出合理范围（%g-%g),请重新输入。" % (low, high))
 
 
 def report(height_cm, weight_kg):
@@ -62,14 +62,14 @@ def report(height_cm, weight_kg):
     print()
     print("身高 %.1f cm   体重 %.1f kg" % (height_cm, weight_kg))
     print("-" * 42)
-    print("BMI：%.1f kg/m^2    分级：%s" % (bmi, name))
-    print("健康体重区间：%.1f - %.1f kg（BMI %.1f-%.1f）"
+    print("BMI:%.1f kg/m^2    分级：%s" % (bmi, name))
+    print("健康体重区间：%.1f - %.1f kg(BMI %.1f-%.1f)"
           % (low_kg, high_kg, NORMAL_LOW, NORMAL_HIGH))
 
     if weight_kg < low_kg:
         print("距离健康区间下限还差 %.1f kg。" % (low_kg - weight_kg))
     elif weight_kg > high_kg:
-        print("超出健康区间上限 %.1f kg；先减去 %.1f kg（约 5%%）即有明确获益。"
+        print("超出健康区间上限 %.1f kg;先减去 %.1f kg(约 5%%)即有明确获益。"
               % (weight_kg - high_kg, weight_kg * 0.05))
     else:
         print("目前在健康区间内，距上限还有 %.1f kg 余量。" % (high_kg - weight_kg))
@@ -80,7 +80,7 @@ def report(height_cm, weight_kg):
         print("  · " + tip)
 
     print()
-    print("注：BMI 不区分肌肉与脂肪，也不反映脂肪分布；不适用于未成年人、"
+    print("注:BMI 不区分肌肉与脂肪，也不反映脂肪分布；不适用于未成年人、"
           "孕期哺乳期女性和运动员。仅供参考，不能替代医生诊断。")
 
 
@@ -90,11 +90,11 @@ def main():
         try:
             height_cm, weight_kg = float(args[0]), float(args[1])
         except ValueError:
-            sys.exit("用法：python bmi.py [身高cm] [体重kg]")
+            sys.exit("用法:python bmi.py [身高cm] [体重kg]")
     else:
         print("BMI 计算器")
-        height_cm = ask("身高（cm）：", 50, 250)
-        weight_kg = ask("体重（kg）：", 10, 400)
+        height_cm = ask("身高(cm):", 50, 250)
+        weight_kg = ask("体重(kg):", 10, 400)
     report(height_cm, weight_kg)
 
 
